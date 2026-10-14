@@ -1,0 +1,314 @@
+=== Smart City Traffic Light Data System ===
+(ICS 2305 Systems Programming - Question 2)
+
+Enter number of sensors (1-100): Created 3 sensor(s).
+
+===== Smart City Traffic Light System ===== (tick 0, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: ID: 001, Name: Sensor_001, Status: ACTIVE, Light: RED (56s)
+Traffic Density: 17.61, Speed: 89.72 km/h, Occupancy: 70.63%
+Vehicle Count: 90, Queue Length: 41, Wait Time: 21.47 seconds
+Last update tick: 0
+
+ID: 002, Name: Sensor_002, Status: ACTIVE, Light: RED (44s)
+Traffic Density: 34.93, Speed: 82.87 km/h, Occupancy: 14.00%
+Vehicle Count: 58, Queue Length: 4, Wait Time: 6.77 seconds
+Last update tick: 0
+
+ID: 003, Name: Sensor_003, Status: ACTIVE, Light: RED (52s)
+Traffic Density: 53.07, Speed: 74.56 km/h, Occupancy: 47.81%
+Vehicle Count: 68, Queue Length: 23, Wait Time: 58.93 seconds
+Last update tick: 0
+
+
+===== Smart City Traffic Light System ===== (tick 0, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Enter Sensor ID: ID: 002, Name: Sensor_002, Status: ACTIVE, Light: RED (44s)
+Traffic Density: 34.93, Speed: 82.87 km/h, Occupancy: 14.00%
+Vehicle Count: 58, Queue Length: 4, Wait Time: 6.77 seconds
+Last update tick: 0
+
+
+===== Smart City Traffic Light System ===== (tick 0, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Out of range! Enter a number between 1 and 11.
+Enter Sensor ID to rename: New name: Rename REJECTED: 36 chars exceeds buffer of 19. Sensor name left untouched (overflow prevented).
+
+===== Smart City Traffic Light System ===== (tick 0, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Enter Sensor ID to toggle: Sensor 003 is now INACTIVE - after 3 idle ticks the GC will reclaim it.
+
+===== Smart City Traffic Light System ===== (tick 0, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Tick 1: 2 active sensor(s) reported new readings.
+
+===== Smart City Traffic Light System ===== (tick 1, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Tick 2: 2 active sensor(s) reported new readings.
+
+===== Smart City Traffic Light System ===== (tick 2, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Tick 3: 2 active sensor(s) reported new readings.
+
+===== Smart City Traffic Light System ===== (tick 3, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Enter Sensor ID to corrupt: --- Corruption demo on sensor 002 ---
+  overflow executed; guard word verified post-write.
+  record poisoned: out-of-range values, unterminated name, broken guard.
+  ! guard word broken - buffer overrun detected
+  ! name not NUL-terminated within its buffer
+  ! traffic density out of range (0-100)
+  ! speed out of range (0-200 km/h)
+  ! occupancy out of range (0-100%)
+  ! vehicle count is negative
+Sensor 002 QUARANTINED - run garbage collection to reclaim it.
+
+===== Smart City Traffic Light System ===== (tick 3, 3 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: 
+--- Garbage collection pass (tick 3) ---
+MARK: sensor Sensor_003 (ID 003) silent for 3 ticks -> orphaned.
+SWEEP: reclaiming orphan AAAAAAAAAAAAAAAAAAAA (ID 002).
+SWEEP: reclaiming orphan Sensor_003 (ID 003).
+GC complete: 1 marked, 2 reclaimed, 144 bytes freed, 1 sensor(s) remain.
+
+===== Smart City Traffic Light System ===== (tick 3, 1 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: ID: 001, Name: Sensor_001, Status: ACTIVE, Light: GREEN (1s)
+Traffic Density: 96.57, Speed: 55.98 km/h, Occupancy: 31.17%
+Vehicle Count: 75, Queue Length: 5, Wait Time: 23.26 seconds
+Last update tick: 3
+
+
+===== Smart City Traffic Light System ===== (tick 3, 1 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: 
+===== Memory statistics =====
+Live allocations : 1 sensor(s), 72 bytes
+Peak usage       : 216 bytes
+Created / freed  : 3 / 2
+=============================
+
+===== Smart City Traffic Light System ===== (tick 3, 1 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: New sensor added successfully with ID 002.
+
+===== Smart City Traffic Light System ===== (tick 3, 2 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: ID: 001, Name: Sensor_001, Status: ACTIVE, Light: GREEN (1s)
+Traffic Density: 96.57, Speed: 55.98 km/h, Occupancy: 31.17%
+Vehicle Count: 75, Queue Length: 5, Wait Time: 23.26 seconds
+Last update tick: 3
+
+ID: 002, Name: Sensor_002, Status: ACTIVE, Light: RED (1s)
+Traffic Density: 55.27, Speed: 32.35 km/h, Occupancy: 46.28%
+Vehicle Count: 5, Queue Length: 14, Wait Time: 26.98 seconds
+Last update tick: 3
+
+
+===== Smart City Traffic Light System ===== (tick 3, 2 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Enter Sensor ID to remove: Sensor ID 099 not found.
+
+===== Smart City Traffic Light System ===== (tick 3, 2 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Enter Sensor ID to remove: Removing sensor ID 001 (Sensor_001) - 72 bytes freed.
+
+===== Smart City Traffic Light System ===== (tick 3, 1 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: Enter Sensor ID: Sensor ID 099 not found.
+
+===== Smart City Traffic Light System ===== (tick 3, 1 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: 
+===== Memory statistics =====
+Live allocations : 1 sensor(s), 72 bytes
+Peak usage       : 216 bytes
+Created / freed  : 4 / 3
+=============================
+
+===== Smart City Traffic Light System ===== (tick 3, 1 sensor(s))
+1. View all sensors
+2. View sensor by ID
+3. Add sensor
+4. Simulate new sensor readings (tick)
+5. Toggle sensor active/inactive
+6. Rename sensor (overflow-guard demo)
+7. Manually remove sensor (immediate free)
+8. Simulate corrupt data (buffer-overflow demo)
+9. Run garbage collection
+10. Memory statistics
+11. Exit (free all + leak check)
+Enter choice: 
+Shutting down: freeing all sensors...
+No memory leaks detected (0 live allocations).
